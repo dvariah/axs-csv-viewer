@@ -19,8 +19,8 @@ namespace AxsCsvViewer.Controllers
         /// </summary>
         /// <param name="subscription"></param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> GetAllUniqueTansaction([FromBody] string filePath)
+        [HttpGet("/transaction/all")]
+        public async Task<IActionResult> GetAllUniqueTansaction([FromQuery] string filePath)
         {
             var result = await _saleService.GetAllUniqueTansactionsId(filePath);
 
@@ -31,8 +31,8 @@ namespace AxsCsvViewer.Controllers
         /// Returns a collection of sales associated with transaction id
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<IActionResult> GetByTansactionId([FromBody] string filePath, [FromBody] string transactionId)
+        [HttpGet("all/{transactionId}")]
+        public async Task<IActionResult> GetByTansactionId([FromQuery] string filePath, [FromRoute] string transactionId)
         {
             var result = await _saleService.GetSalesByTansactionId(filePath, transactionId);
 
