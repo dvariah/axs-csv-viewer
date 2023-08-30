@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AxsCsvViewer.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class SaleController : Controller
     {
         ISaleService _saleService;
@@ -18,9 +20,9 @@ namespace AxsCsvViewer.Controllers
         /// <param name="subscription"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllUniqueTansaction()
+        public async Task<IActionResult> GetAllUniqueTansaction([FromBody] string filePath)
         {
-            var result = await _saleService.GetAllUniqueTansactionsId();
+            var result = await _saleService.GetAllUniqueTansactionsId(filePath);
 
             return Ok(result);
         }
@@ -30,9 +32,9 @@ namespace AxsCsvViewer.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetByTansactionId()
+        public async Task<IActionResult> GetByTansactionId([FromBody] string filePath, [FromBody] string transactionId)
         {
-            var result = await _saleService.GetSalesByTansactionId();
+            var result = await _saleService.GetSalesByTansactionId(filePath, transactionId);
 
             return Ok(result);
         }
