@@ -25,6 +25,11 @@ namespace AxsCsvViewer.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Returns a collection of sales associated with transaction id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public async Task<IActionResult> GetByTansactionId()
         {
             var result = await _saleService.GetSalesByTansactionId();
